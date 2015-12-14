@@ -1,0 +1,383 @@
+.tempTargetPop{
+	 height:auto;
+	 overflow:hidden;
+	 min-height:150px;
+	 z-index:3000;
+	 position:absolute;
+	 left:200px;
+	 top:200px;
+	 background:#fff;
+	 width:500px;
+	 padding-bottom:10px;
+	-webkitbox-shadow:0px 3px 10px 0 rgba(0,0,0,0.3);
+	-moz-box-shadow:0px 3px 10px 0 rgba(0,0,0,0.3);
+	-o-box-shadow:0px 3px 10px 0 rgba(0,0,0,0.3);
+	box-shadow:0px 3px 10px 0 rgba(0,0,0,0.3);
+}
+.tempTargetTitlte{
+    color:#344157;
+    cursor: pointer;
+    font-size:13px;
+    height:26px;
+    line-height:33px;
+    text-align:left;
+    width: 100%;
+    background:#ecf2fc;
+}
+.tempTargetTitlte span{margin-left:5px;}
+.tempTargetTitlteClose{
+	display:inline-block;
+	display:-moz-inline-stack;
+	zoom:1;
+	*display:inline;
+    cursor:pointer;
+    float:right;
+    height:24px;
+    line-height:24px;
+    text-align:center;
+    width:24px;
+    color:red;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* ��Ϣ���� */
+.NewsChannels{
+	width:94%;
+	height:auto;
+	overflow:hidden;
+	margin:auto;
+	padding:15px 0px;
+}
+.NewsChannels label{
+	display:inline-block;
+	display:-moz-inline-stack;
+	zoom:1;
+	*display:inline;
+	float:left;
+	margin-right:20px;
+	margin-left:20px;
+}
+.NewsChannels ul{
+	float:left;
+	height:auto;
+	overflow:hidden;
+}
+.NewsChannels ul li{
+	float:left;
+	list-style:none;
+	margin-right:25px;
+	cursor:pointer;
+}
+.NewsChannels ul li input{
+	vertical-align:middle;
+	margin-right:5px;
+	margin-top:-2px;
+	cursor:pointer;
+}
+
+/* �ֺ� */
+.disTarget{
+	border:1px solid #dadada;
+	width:94%;
+	margin:auto;
+	height:auto;
+	min-height:100px;
+}
+/* �ֺ����� */
+.disasterTypes{
+	margin:auto;
+	padding:15px 0px;
+}
+.disasterTypes label{
+	display:inline-block;
+	display:-moz-inline-stack;
+	zoom:1;
+	*display:inline;
+	float:left;
+	margin-right:20px;
+	margin-left:20px;
+	line-height:30px;
+}
+.disasterTypes .disasterTypes-select{
+	float:left;
+	margin-right:25px;
+	border:1px solid #dadada;
+	height:30px;
+	width:130px;
+}
+
+/* �ֺ��ȼ� */
+.disasterGrade{
+	padding:25px 0px;
+	height:auto;
+	clear:both;
+}
+.disasterGrade label{
+	display:inline-block;
+	display:-moz-inline-stack;
+	zoom:1;
+	*display:inline;
+	float:left;
+	margin-right:20px;
+	margin-left:20px;
+}
+.disasterGrade ul{
+	float:left;
+	height:auto;
+	overflow:hidden;
+}
+.disasterGrade ul li{
+	float:left;
+	list-style:none;
+	margin-right:25px;
+	cursor:pointer;
+}
+.disasterGrade ul li input{
+	vertical-align:middle;
+	margin-right:5px;
+	margin-top:-2px;
+	cursor:pointer;
+}
+
+/* Ӱ������ */
+.influenceArea{
+	/*padding:15px 0px;*/
+	height:auto;
+	clear:both;
+	overflow:hidden;
+	width:100%;
+	margin:auto;
+}
+.EAlabel{
+	display:inline-block;
+	display:-moz-inline-stack;
+	zoom:1;
+	*display:inline;
+	/* float:left; */
+	/*margin-right:20px;*/
+	/*margin-left:20px;*/
+	line-height:32px;
+}
+.influenceArea-box{
+	display: inline-block;
+    width: 480px;
+    vertical-align: top;
+}
+.influenceArea-box-ul{
+	/* float:left; */
+	height:auto;
+	overflow:hidden;
+	width:auto;
+  	margin-top: 0;
+ /*	margin-left: 30px;*/
+}
+.influenceArea-box-ul-li{
+	float:left;
+	list-style:none;
+	margin-right:4px;
+/*	margin-right:-2px;*/
+	margin-bottom:3px;
+/*	border-bottom: 1px solid #eee;*/
+}
+.influenceArea-box-ul-li-a{
+	float:left;
+	display:inline-block;
+	display:-moz-inline-stack;
+	zoom:1;
+	*display:inline;
+	height:26px;
+	line-height:26px;
+	width:72px;
+	padding-left:3px;
+	text-align:center;
+	background:url(../img/trunk/label.png) no-repeat;
+}
+.influenceArea-box-ul-li-a-i{
+	font-weight:bold;
+	cursor:pointer;
+	font-style:normal;
+	margin-left:4px;
+}
+.influenceArea-box ul li a i:hover{
+	color:#f39c11;
+}
+
+/* ��Ϣ�� */
+.messageBox{
+	height:auto;
+	clear:both;
+	overflow:hidden;
+	width:100%;
+	margin:auto;
+	height:60px;
+	background:#ecf2fc;
+	margin-bottom:2px;
+}
+.MBlabel{
+	display:inline-block;
+	display:-moz-inline-stack;
+	zoom:1;
+	*display:inline;
+	float:left;
+	margin-left:20px;
+	line-height:60px;
+	width:64px;
+	text-align:left;
+}
+.messageBox-textarea{
+	border:1px solid #dadada;
+	margin:6px 6px 6px 0px;
+	width:75%;
+	height:45px;
+	float:left;
+	background:#fff;
+}
+
+/* ���� */
+.tempTarget-btn{
+	height:auto;
+	overflow:hidden;
+	width:auto;
+	margin:auto;
+	text-align:right;
+    float: right;
+    margin-right: 10px;
+}
+.tempTarget-btn button{
+	margin-left:20px;
+	height:26px;
+	line-height:26px;
+	width:60px;
+	color:#fff;
+	cursor:pointer;
+	font-size:12px;
+	background:#1f7ed0;
+	font-family:"΢���ź�";
+	border:0;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+}
+.tempTarget-btn button:hover{
+	color:#f5b828
+}
+
+.msgTrack-btn{
+	height:auto;
+	overflow:hidden;
+	margin:auto;
+}
+.msgTrack-btn button{
+	margin-left:20px;
+	height:26px;
+	line-height:26px;
+	width:60px;
+	color:#fff;
+	cursor:pointer;
+	font-size:12px;
+	background:#1f7ed0;
+	font-family:"΢���ź�";
+	border:0;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+}
+.msgTrack-btn button:hover{
+	color:#f5b828
+}
+
+/* ������Ϣ׷�� */
+div.inforTracking{
+	width:320px;
+	right:1px;
+	bottom:1px;
+	left:inherit;
+	top:inherit;
+}
+div.inforTracking-big{
+	width:664px;
+	left:50%;
+	top:50%;
+	margin-top:-282px;
+	margin-left:-332px;
+}
+div.inforTracking-big .inforTracking-con{
+	height:auto;
+}
+
+/* ����� */
+.progress-bar{
+	margin:auto;
+	background:#1f7ed0;
+	border:1px solid #1f7ed0;
+	color:#fff;
+	width:94%;
+	margin-top:5px;
+}
+.progress-bar img{
+	width:100%;
+}
+/* ׷����Ϣ�� */
+.inforTracking-con{
+	height:170px;
+	overflow-y:auto;
+	width:100%;
+}
+.inforTracking-box{
+	border:1px solid #808080;
+	float:left;
+	width:94%;
+	margin-left:3%;
+	margin-top:5px;
+	height:auto;
+	overflow:hidden;
+	max-width:300px;
+}
+.inforTracking-box li{
+	line-height:25px;
+	width:98%;
+	padding-left:2%;
+	display:block;
+}
+
+.inforTracking-box-num{
+	padding:5px 0px;
+	width:94%;
+	margin:auto;
+	text-align:right;
+	clear:both;
+}
+.inforTracking-box-num a{
+	cursor:pointer;
+	margin-left:10px;
+}
+.inforTracking-box-num a:hover{
+	color:#1f7ed0
+}
+.inforTracking-chose-select,
+.inforTracking-centenBtn{
+	vertical-align:top;
+	display:inline-block;
+}
+.inforTracking-centenBtn{ vertical-align:middle}
+/*弹出框确认按钮*/
+.popBtn button{
+	background: #4089C9;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+}
+.popBtn button:hover{
+	background:#7CB7EA;
+}
+
+
+
+
+
+
+
+

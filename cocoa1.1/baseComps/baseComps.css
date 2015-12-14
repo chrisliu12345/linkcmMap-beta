@@ -1,0 +1,17 @@
+/*Ӧ�������иߣ��߾�*/
+.marTpad{
+	margin-top:10px;
+	padding:0 10px;
+	width:auto;
+}
+
+.marR10{ margin-right:10px;}
+
+.paddLR10{ padding:0 10px;}
+
+.alarmColor{ color:#ff0000}
+
+.floatR10{
+	float:right;
+	margin-right:10px;
+}

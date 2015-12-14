@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>div模拟下拉菜单jquery插件 - 懒人建站</title>
+<link rel="stylesheet" type="text/css" href="target/target.css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="baseComps/checkBoxComp.js"></script>
+<script type="text/javascript" src="baseComps/buttonComp.js"></script>
+<script type="text/javascript" src="baseComps/compTools.js"></script>
+<script type="text/javascript" src="baseComps/radioComp.js"></script>
+<script type="text/javascript" src="baseComps/textAreaComp.js"></script>
+<script type="text/javascript" src="baseComps/selectComp.js"></script>
+<script type="text/javascript" src="target/message/effectAreaComp.js"></script>
+<script type="text/javascript" src="target/track/trackComp.js"></script>
+<script type="text/javascript" src="baseComps/pagingComp.js"></script>
+<script type="text/javascript" src="entry.js"></script>
+<script type="text/javascript" src="trackentry.js"></script>
+</head>
+
+<body>
+      <div id="targetComps"></div>
+      <div id="track"></div>
+      
+      <div id="tempTarget"> 
+	    <div class="tempTargetPop nu-target" style="display:none;">
+	    	<div class="tempTargetTitlte"><span>应急调度</span><a class="tempTargetTitlteClose">×</a></div>
+	    	<!-- 消息渠道 -->
+	    	<div class="NewsChannels">
+	    		<label>消息渠道：</label>
+	    		<ul>
+	    			<li><input type="checkbox" />短信</li>
+	    			<li><input type="checkbox" />大喇叭</li>
+	    			<li><input type="checkbox" />LED显示屏</li>
+	    		</ul>
+	    	</div>
+	    	<!--灾害  -->
+	    	<div class="disTarget">
+	    		<!-- 灾害类型 -->
+	    		<div class="disasterTypes">
+	    			<label>灾害类型：</label>
+		    		<div class="disasterTypes-select"></div>
+		    		<div class="disasterTypes-select"></div>
+	    		</div>
+	    		<!-- 灾害等级 -->
+	    		<div class="disasterGrade">
+	    			<label>灾害等级：</label>
+		    		<ul>
+		    			<li><input type="radio" />红</li>
+		    			<li><input type="radio" />橙</li>
+		    			<li><input type="radio" />黄</li>
+		    			<li><input type="radio" />蓝</li>
+		    			<li><input type="radio" />白</li>
+		    			<li><input type="radio" />其他</li>
+		    		</ul>
+	    		</div>
+	    	</div>
+	    	<!-- 影响区域 -->
+	    	<div class="influenceArea">
+	    		<label>影响区域：</label>
+	    		<div class="influenceArea-box">
+	    			<ul>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    				<li><a>潭水镇<i>×</i></a></li>
+	    			</ul>
+	    		</div>
+	    	</div>
+	    	<!-- 信息框 -->
+	    	<div class="messageBox">
+	    		<label>短信：</label>
+	    		<div class="messageBox-textarea"></div>
+	    	</div>
+	    	<div class="messageBox">
+	    		<label>LED显示屏：</label>
+	    		<div class="messageBox-textarea"></div>
+	    	</div>
+	    	
+	    	<!-- 发布按钮 -->
+	    	<div class="tempTarget-btn">
+	    		<button>重置</button>
+	    		<button>发布</button>
+	    	</div> 	
+	    </div>
+	    
+	    <!-- 发布信息追踪 -->  
+	    <div class="tempTargetPop inforTracking nu-infor" style="display:block;">
+	    	<div class="tempTargetTitlte">
+	    		<span>发布信息追踪</span>
+	    		<a class="tempTargetTitlteClose">×</a>
+	    		<a class="tempTargetTitlteClose">□</a>
+	    	</div>
+	    	<div class="inforTracking-con">
+		    	<div class="progress-bar">
+		    		
+		    	</div>
+                <div id="trackMin"></div>
+		    	<!--<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>
+		    	<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>-->
+		    </div>
+	    </div>
+	    <!-- 发布信息追踪 放大 -->
+	    <div class="tempTargetPop inforTracking-big nu-infor" style="display:block;">
+	    	<div class="tempTargetTitlte">
+	    		<span>发布信息追踪</span>
+	    		<a class="tempTargetTitlteClose">×</a>
+	    		<a class="tempTargetTitlteClose">-</a>
+	    	</div>
+            <div class="progress-bar"></div>
+            <div id="trackMax"></div>
+	    	<!--<div class="inforTracking-con">
+		    	<div class="progress-bar">
+		    		
+		    	</div>
+		    	<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>
+		    	<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>
+		    	<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>
+		    	<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>
+		    	<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>
+		    	<div class="inforTracking-box">
+		    		<ul>
+		    			<li>渠道：<span>短信</span></li>
+		    			<li>灾害：<span>气象灾害-台风-红色预警</span></li>
+		    			<li>内容：<span>各单位请做好台风防灾工作</span></li>
+		    			<li>日期：<span>2015-09-22 17:00</span></li>
+		    		</ul>
+		    	</div>
+		    	<div class="inforTracking-box-num"><a>上一页</a><a>下一页</a></div>
+		    </div>
+	    </div>-->
+    </div>
+</body>
+</html>
+
+
