@@ -78,7 +78,7 @@ cityArea.prototype={
 				obj.color = mapStyle.fillColor;
 			}
 			jsonDatas[key].properties = obj;
-			console.info(jsonDatas[key]);
+			//console.info(jsonDatas[key]);
 			if(typeof(countyName)!=='undefined'){
 				if(jsonDatas[key].name !== countyName){
 					continue;

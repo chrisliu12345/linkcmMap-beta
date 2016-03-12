@@ -33,8 +33,8 @@ $(function(){
 		{"name":"广州市","color":"blue"}
 	];
 	// area.loadCity('广州,河源',styleJson);
-	area.loadCountry('广州',styleJson,'从化市');
-	// area.load86Country(styleJson);
+	//area.loadCountry('广州',styleJson,'从化市');
+	 area.load86Country(styleJson);
 	// var styleJson = [
 	// 	{"name":"广州","color":"yellow"},
 	// 	{"name":"惠州","color":"orange"},
@@ -42,19 +42,19 @@ $(function(){
 	// 	{"name":"湛江","color":"gray"}
 	// ];
 	// area.load21City(styleJson);
-	// var showJson = [
-	// 	{"name":"增城市","content":"<div style='border:1px solid #000;background:white;'><span>高温</span></div>"},
-	// 	{"name":"从化市","content":"<div style='border:1px solid #000;background:white;'><span>大风</span></div>"},
-	// 	{"name":"广州市","content":"<div style='border:1px solid #000;background:white;'><span>大雨</span></div>"}
-	// ];
-	// area.addSelectEvent(showJson);//添加选中事件
+	 var showJson = [
+	 	{"name":"增城市","content":"<div style='border:1px solid #000;background:white;'><span>高温</span></div>"},
+	 	{"name":"从化市","content":"<div style='border:1px solid #000;background:white;'><span>大风</span></div>"},
+	 	{"name":"广州市","content":"<div style='border:1px solid #000;background:white;'><span>大雨</span></div>"}
+	 ];
+	 area.addSelectEvent(showJson);//添加选中事件
 	
 	// 添加点例子
-	/*var shape = new mapShape(map);
+	var shape = new mapShape(map);
 	var pointJson = [
-		{"name":"G1234","lon":"113","lat":"23","text":"12","img":"marker.png","imgWidth":"20","imgHeight":"20"},
-		{"name":"G1235","lon":"108","lat":"20","text":"23","img":"marker-blue.png","imgWidth":"20","imgHeight":"20"},
-		{"name":"G1236","lon":"118","lat":"18","text":"34","img":"marker-gold.png","imgWidth":"20","imgHeight":"20"}
+		{"type":"A","name":"G1234","lon":"113","lat":"23","text":"12","img":"marker.png","imgWidth":"20","imgHeight":"20"},
+		{"type":"B","name":"G1235","lon":"108","lat":"20","text":"23","img":"marker-blue.png","imgWidth":"20","imgHeight":"20"},
+		{"type":"C","name":"G1236","lon":"118","lat":"18","text":"34","img":"marker-gold.png","imgWidth":"20","imgHeight":"20"}
 	];
 	shape.addPoints(pointJson);
 	var pointShowJson = [
@@ -62,7 +62,10 @@ $(function(){
 		{"name":"G1235","content":"<div style='border:1px solid #000;background:white;'><span>大风</span></div>"},
 		{"name":"G1236","content":"<div style='border:1px solid #000;background:white;'><span>寒冷</span></div>"}
 	];
-	shape.addPointsEvent(pointShowJson);*/
+	shape.addPointsEvent(pointShowJson,pointBack);
+
+	shape.hidePoint(['A','B']);
+	shape.showPoint(['A','B']);
 	// var draw = new drawTool(map);
 	// draw.drawPoint();
 	// draw.drawPath();
@@ -72,6 +75,9 @@ $(function(){
 	
 	// var distance = new DistanceTool(map);
 	// distance.addDistanceTool();
+	function pointBack(obj){
+		console.info(obj);
+	}
 });
 
 function createPolygon(map){

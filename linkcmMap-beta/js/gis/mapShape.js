@@ -27,27 +27,30 @@ mapShape.prototype={
         this.map.addLayer(pointLayer);
 		var pfList = [];
 		for(var pKey in pointJson){
-			var point = new OpenLayers.Geometry.Point(pointJson[pKey].lon,pointJson[pKey].lat);
+			var tempJson = pointJson[pKey];
+			var point = new OpenLayers.Geometry.Point(tempJson.lon,tempJson.lat);
 			var pointFeature = new OpenLayers.Feature.Vector(point);
-			var sText = pointJson[pKey].text;
+			var sText = tempJson.text;
 			if(sText){
 			}else{
 				sText = '';
 			}
 			 pointFeature.attributes = {
-	   			imgPath:pointJson[pKey].img,
-				key:pointJson[pKey].name,
+	   			imgPath:tempJson.img,
+				key:tempJson.name,
 				text:sText,
-				width:pointJson[pKey].imgWidth,
-				height:pointJson[pKey].imgHeight,
-				type:'point'
+				width:tempJson.imgWidth,
+				height:tempJson.imgHeight,
+				type:'point',
+			 	pointKind:tempJson.type//用于判断点的类型
 	        };
 			pfList.push(pointFeature);
 		}
 		pointLayer.addFeatures(pfList);
 		this.pointLayer = pointLayer;
+		this.pointList = pfList;
 	},
-	addPointsEvent:function(showJson){//图层选择事件
+	addPointsEvent:function(showJson,callBack){//图层选择事件
 		var pointLayer = this.pointLayer;
 		this.map.events.register('mousemove',this.map,function(pobj){
 			var pointObj = document.getElementById('showLayer');
@@ -103,6 +106,12 @@ mapShape.prototype={
 						pointLayer.redraw();
 					}
 				}
+				if(callBack){
+					var objEle = {};
+					objEle.type = 'onSelect';
+					objEle.ele = lev;
+					callBack(objEle);
+				}
 	        },
 			onUnselect:function(lev){
 				if(lev.attributes.type === 'point'){
@@ -113,15 +122,57 @@ mapShape.prototype={
 					}
 				}
 				document.getElementById('showLayer').style.display = 'none';
+				if(callBack){
+					var objEle = {};
+					objEle.type = 'onUnselect';
+					objEle.ele = lev;
+					callBack(objEle);
+				}
 			},
 			callbacks:{
 				click:function(lev){
-					console.info(lev);
+					if(callBack){
+						var objEle = {};
+						objEle.type = 'click';
+						objEle.ele = lev;
+						callBack(objEle);
+					}
+					//console.info(lev);
 				}
 			}
 		});
+		console.info(this.map);
 		this.map.addControls([pointLayerEvent]);
 		pointLayerEvent.activate();//使控件生效
+	},
+	/**
+	 * 对点进行过滤
+	 */
+	hidePoint: function(types){
+		var points = this.pointLayer.features;
+		var filter = [];
+		for(var key in points){
+			var tempPoint = points[key];
+			for(var ft in types){
+				if(tempPoint.attributes.pointKind === types[ft]){
+					filter.push(tempPoint);
+				}
+			}
+		}
+		this.pointLayer.removeFeatures(filter);
+	},
+	showPoint: function (types){
+		var points = this.pointList;
+		var filter = [];
+		for(var key in points){
+			var tempPoint = points[key];
+			for(var ft in types){
+				if(tempPoint.attributes.pointKind === types[ft]){
+					filter.push(tempPoint);
+				}
+			}
+		}
+		this.pointLayer.addFeatures(filter);
 	},
 	addMarkers:function(markJson){
 		//向地图添加标注
@@ -143,5 +194,8 @@ mapShape.prototype={
 		// markers.events.register("mouseover", markers ,function(e){
 		// 	console.info("1");	
 		// });
+	},
+	getPointLayer: function(){
+		return this.pointLayer;
 	}
 };
