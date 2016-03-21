@@ -9,55 +9,67 @@ cityArea.prototype={
 		}else if(cityList!=='city'){
 			this.loadJsonDatas(cityList,'city');
 		}
-		var layerObj = this.map.getLayersByName('areaLayers');
-		if(layerObj.length > 0){//若存在先清空
-			this.map.removeLayer(layerObj);
-		}
+        if(!!this.areaLayer){
+           this.areaLayer.removeAllFeatures();
+        }
         var areaLayer = '';
-		if(selectStyle.fontShow){
-			 areaLayer = new OpenLayers.Layer.Vector('areaLayers', {
-				styleMap: new OpenLayers.StyleMap({
-			        default: {
-						fillColor: '${color}',
-						label:'${areaname}',
-						fillOpacity:mapStyle.fillOpacity,
-						strokeColor: mapStyle.strokeColor,
-						strokeWidth:mapStyle.strokeWidth,
-						fontFamily:'宋体',
-						fontSize:mapStyle.fontSize,
-						fontColor:mapStyle.fontColor,
-						labelOutlineWidth:mapStyle.labelOutlineWidth,
-						labelOutlineColor:mapStyle.labelOutlineColor},
-			        select: {fillColor: selectStyle.fillColor,label:'${key}',fillOpacity:selectStyle.fillOpacity, strokeColor: selectStyle.strokeColor,strokeWidth:selectStyle.strokeWidth,cursor:selectStyle.cursor}
-			    })
-			}); 
-		}else{
-			 areaLayer = new OpenLayers.Layer.Vector('areaLayers', {
-				styleMap: new OpenLayers.StyleMap({
-			        default: {fillColor: '${color}',
-						label:'${areaname}',
-						fillOpacity:mapStyle.fillOpacity,
-						strokeColor: mapStyle.strokeColor,
-						strokeWidth:mapStyle.strokeWidth,
-						fontFamily:'宋体',
-						fontSize:mapStyle.fontSize,
-						fontColor:mapStyle.fontColor,
-						labelOutlineWidth:mapStyle.labelOutlineWidth,
-						labelOutlineColor:mapStyle.labelOutlineColor},
-			        select: {fillColor: selectStyle.fillColor,label:'',fillOpacity:selectStyle.fillOpacity, strokeColor: selectStyle.strokeColor,strokeWidth:selectStyle.strokeWidth,cursor:selectStyle.cursor}
-			    })
-			}); 
-		}
-        this.map.addLayers([areaLayer]);
+        if(!this.areaLayer){
+            var layerObj = this.map.getLayersByName('areaLayers');
+            this.layerObj = layerObj;
+            // if(layerObj.length > 0){//若存在先清空
+            // 	this.map.removeLayer(layerObj);
+            // }
+        
+            if(selectStyle.fontShow){
+                areaLayer = new OpenLayers.Layer.Vector('areaLayers', {
+                    styleMap: new OpenLayers.StyleMap({
+                        default: {
+                            fillColor: '${color}',
+                            label:'${areaname}',
+                            fillOpacity:mapStyle.fillOpacity,
+                            strokeColor: mapStyle.strokeColor,
+                            strokeWidth:mapStyle.strokeWidth,
+                            fontFamily:'宋体',
+                            fontSize:mapStyle.fontSize,
+                            fontColor:mapStyle.fontColor,
+                            labelOutlineWidth:mapStyle.labelOutlineWidth,
+                            labelOutlineColor:mapStyle.labelOutlineColor},
+                        select: {fillColor: selectStyle.fillColor,label:'${key}',fillOpacity:selectStyle.fillOpacity, strokeColor: selectStyle.strokeColor,strokeWidth:selectStyle.strokeWidth,cursor:selectStyle.cursor}
+                    })
+                }); 
+            }else{
+                areaLayer = new OpenLayers.Layer.Vector('areaLayers', {
+                    styleMap: new OpenLayers.StyleMap({
+                        default: {fillColor: '${color}',
+                            label:'${areaname}',
+                            fillOpacity:mapStyle.fillOpacity,
+                            strokeColor: mapStyle.strokeColor,
+                            strokeWidth:mapStyle.strokeWidth,
+                            fontFamily:'宋体',
+                            fontSize:mapStyle.fontSize,
+                            fontColor:mapStyle.fontColor,
+                            labelOutlineWidth:mapStyle.labelOutlineWidth,
+                            labelOutlineColor:mapStyle.labelOutlineColor},
+                        select: {fillColor: selectStyle.fillColor,label:'',fillOpacity:selectStyle.fillOpacity, strokeColor: selectStyle.strokeColor,strokeWidth:selectStyle.strokeWidth,cursor:selectStyle.cursor}
+                    })
+                }); 
+            }
+            this.map.addLayers([areaLayer]);
+        }else{
+            areaLayer = this.areaLayer;
+        }
+		
 		//获取行政区域信息
 		var geojson_format = new OpenLayers.Format.GeoJSON();
 	    var jsonDatas = this.areaJson;
 		for(var key in jsonDatas){
 			var obj = new Object({});
-			obj.key = jsonDatas[key].name;
+            var tempJson = jsonDatas[key];
+			obj.key = tempJson.name;
+            obj.parentName = tempJson.parentName;
 			obj.type='area';
 			if(mapStyle.fontShow){
-				obj.areaname = jsonDatas[key].name;
+				obj.areaname =tempJson.name;
 			}else{
 				obj.areaname = '';
 			}
@@ -76,14 +88,14 @@ cityArea.prototype={
 			}else{
 				obj.color = mapStyle.fillColor;
 			}
-			jsonDatas[key].properties = obj;
+			tempJson.properties = obj;
 			//console.info(jsonDatas[key]);
 			if(typeof(countyName)!=='undefined'){
-				if(jsonDatas[key].name !== countyName){
+				if(tempJson.name !== countyName){
 					continue;
 				}
 			}
-			areaLayer.addFeatures(geojson_format.read(jsonDatas[key]));
+			areaLayer.addFeatures(geojson_format.read(tempJson));
 			this.areaLayer = areaLayer;
 		}
 	},
@@ -112,6 +124,18 @@ cityArea.prototype={
 	load98Country:function(){
 		
 	},
+    loadTargetArea: function(parentName){
+        var areaJson = [];
+		var jsonData = gd86Country.features;
+		for(var jKey in jsonData){
+            console.info(jsonData[jKey]);
+            if(jsonData[jKey].parentName === parentName){
+                areaJson.push(jsonData[jKey]);
+            }
+		}
+		this.areaJson = areaJson;
+		this.loadCity('city');
+    },
 	loadJsonDatas:function(cityList,areaType){
 		var areaJson = [];
 		var jsonData = [];
@@ -176,6 +200,7 @@ cityArea.prototype={
 				}
 			}
 		}
+
 		var keyRecord = '';
 		var layerEvent = new OpenLayers.Control.SelectFeature([areaLayer],{
 		    hover: true,
@@ -225,5 +250,9 @@ cityArea.prototype={
 		});
 		this.map.addControls([layerEvent]);
 		layerEvent.activate();//使控件生效
-	}
+        this.layerEvent = layerEvent;
+	},
+    getAreaLayer: function () {
+        return this.areaLayer;
+    }
 };

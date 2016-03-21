@@ -195,7 +195,7 @@ mapShape.prototype={
 		// 	console.info("1");	
 		// });
 	},
-	getPointLayer: function(){
-		return this.pointLayer;
-	}
+    getShapeLayer: function () {
+        return this.pointLayer;
+    }
 };

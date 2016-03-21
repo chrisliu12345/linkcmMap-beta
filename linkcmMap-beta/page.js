@@ -1,6 +1,7 @@
 $(function(){
 	var map = new buildMap('map');
 	map.createMap();
+    map.refreshUrl('http://vmap0.tiles.osgeo.org/wms/vmap0');
 	// createPolygon(map);
 	// var control = new mapControl(map);
 	// control.addZoomBar();
@@ -27,27 +28,27 @@ $(function(){
 
 	//添加区域例子
 	var area = new cityArea(map);
-	var styleJson = [
-		{"name":"增城市","color":"yellow"},
-		{"name":"从化市","color":"green"},
-		{"name":"广州市","color":"blue"}
-	];
+	// var styleJson = [
+	// 	{"name":"增城市","color":"yellow"},
+	// 	{"name":"从化市","color":"green"},
+	// 	{"name":"广州市","color":"blue"}
+	// ];
 	// area.loadCity('广州,河源',styleJson);
 	//area.loadCountry('广州',styleJson,'从化市');
-	 area.load86Country(styleJson);
-	// var styleJson = [
-	// 	{"name":"广州","color":"yellow"},
-	// 	{"name":"惠州","color":"orange"},
-	// 	{"name":"潮州","color":"green"},
-	// 	{"name":"湛江","color":"gray"}
-	// ];
-	// area.load21City(styleJson);
+	//  area.load86Country(styleJson);
+	var styleJson = [
+		{"name":"广州","color":"yellow"},
+		{"name":"惠州","color":"orange"},
+		{"name":"潮州","color":"green"},
+		{"name":"湛江","color":"gray"}
+	];
+	area.load21City(styleJson);
 	 var showJson = [
 	 	{"name":"增城市","content":"<div style='border:1px solid #000;background:white;'><span>高温</span></div>"},
 	 	{"name":"从化市","content":"<div style='border:1px solid #000;background:white;'><span>大风</span></div>"},
 	 	{"name":"广州市","content":"<div style='border:1px solid #000;background:white;'><span>大雨</span></div>"}
 	 ];
-	 area.addSelectEvent(showJson);//添加选中事件
+	//  area.addSelectEvent(showJson);//添加选中事件
 	
 	// 添加点例子
 	var shape = new mapShape(map);
@@ -56,17 +57,22 @@ $(function(){
 		{"type":"B","name":"G1235","lon":"108","lat":"20","text":"23","img":"marker-blue.png","imgWidth":"20","imgHeight":"20"},
 		{"type":"C","name":"G1236","lon":"118","lat":"18","text":"34","img":"marker-gold.png","imgWidth":"20","imgHeight":"20"}
 	];
-	/*shape.addPoints(pointJson);
+	shape.addPoints(pointJson);
 	var pointShowJson = [
 		{"name":"G1234","content":"<div style='border:1px solid #000;background:white;'><span>高温</span></div>"},
 		{"name":"G1235","content":"<div style='border:1px solid #000;background:white;'><span>大风</span></div>"},
 		{"name":"G1236","content":"<div style='border:1px solid #000;background:white;'><span>寒冷</span></div>"}
 	];
-	shape.addPointsEvent(pointShowJson,pointBack);
+	// shape.addPointsEvent(pointShowJson,pointBack);
+    
+    var layerArr = [];
+    layerArr.push(area.getAreaLayer());
+    layerArr.push(shape.getShapeLayer());
+    map.addEventToLayers(layerArr,pointBack);
 
-	shape.hidePoint(['A','B']);
-	shape.showPoint(['A','B']);*/
-	shape.addMarkers(pointJson);
+	
+	shape.showPoint(['A','B']);
+	// shape.addMarkers(pointJson);
 	// var draw = new drawTool(map);
 	// draw.drawPoint();
 	// draw.drawPath();
@@ -78,6 +84,10 @@ $(function(){
 	// distance.addDistanceTool();
 	function pointBack(obj){
 		console.info(obj);
+        area.loadTargetArea(obj.attributes.key);
+        map.deactivateEvent();
+        shape.hidePoint(['A']);
+        map.refreshUrl('http://wms.jpl.nasa.gov/wms.cgi');
 	}
 });
 
