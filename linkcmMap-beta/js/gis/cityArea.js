@@ -49,7 +49,6 @@ cityArea.prototype={
 			}); 
 		}
         this.map.addLayers([areaLayer]);
-		   
 		//获取行政区域信息
 		var geojson_format = new OpenLayers.Format.GeoJSON();
 	    var jsonDatas = this.areaJson;
@@ -180,10 +179,10 @@ cityArea.prototype={
 		var keyRecord = '';
 		var layerEvent = new OpenLayers.Control.SelectFeature([areaLayer],{
 		    hover: true,
-			multiple:true,
+			//multiple:true,
 			highlightOnly: selectStyle.highlightOnly,
 			// toggle: true,
-			renderIntent: 'select',
+			//renderIntent: 'select',
 	        onSelect: function(lev){//featurehighlighted
 				// var evName = lev.attributes.key;
 				// areaLayer.setZIndex(745);

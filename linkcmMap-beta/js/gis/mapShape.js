@@ -76,9 +76,9 @@ mapShape.prototype={
 		var pointLayerEvent = new OpenLayers.Control.SelectFeature([pointLayer],{
 		    hover: true,
 			// highlightOnly: true,
-			toggle: true,
+			//toggle: true,
 	        onSelect: function(lev){
-				// areaLayer.setZIndex(745);
+				//pointLayer.setZIndex(745);
 				var showHtml = lev.attributes.html;
 				if(showHtml){
 				}else{

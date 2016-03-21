@@ -24,7 +24,7 @@ $(function(){
 	// var imageList = ['resources/img/1.jpg','resources/img/2.jpg','resources/img/3.jpg','resources/img/4.jpg','resources/img/5.jpg','resources/img/6.png','resources/img/7.jpg','resources/img/8.jpg','resources/img/9.jpg'];
 	// pic.startImageAnimate(imageList,1000,true);
 	// pic.stopImageAnimate();
-	
+
 	//添加区域例子
 	var area = new cityArea(map);
 	var styleJson = [
@@ -56,7 +56,7 @@ $(function(){
 		{"type":"B","name":"G1235","lon":"108","lat":"20","text":"23","img":"marker-blue.png","imgWidth":"20","imgHeight":"20"},
 		{"type":"C","name":"G1236","lon":"118","lat":"18","text":"34","img":"marker-gold.png","imgWidth":"20","imgHeight":"20"}
 	];
-	shape.addPoints(pointJson);
+	/*shape.addPoints(pointJson);
 	var pointShowJson = [
 		{"name":"G1234","content":"<div style='border:1px solid #000;background:white;'><span>高温</span></div>"},
 		{"name":"G1235","content":"<div style='border:1px solid #000;background:white;'><span>大风</span></div>"},
@@ -65,7 +65,8 @@ $(function(){
 	shape.addPointsEvent(pointShowJson,pointBack);
 
 	shape.hidePoint(['A','B']);
-	shape.showPoint(['A','B']);
+	shape.showPoint(['A','B']);*/
+	shape.addMarkers(pointJson);
 	// var draw = new drawTool(map);
 	// draw.drawPoint();
 	// draw.drawPath();
