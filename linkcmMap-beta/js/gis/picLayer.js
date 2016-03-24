@@ -28,9 +28,9 @@ picLayer.prototype={
 	setWmsShow:function(cLayerName,status){//设置wms图层是否可见
 		this.map.getLayersByName(cLayerName)[0].setVisibility(status);
 	},
-	addImage : function(imgUrl){
+	addImage : function(imgUrl,bounds){
 		var mapEPSG = this.map.getProjectionObject();
-		var imageBounds = new OpenLayers.Bounds(110,20,120,30);
+		var imageBounds = new OpenLayers.Bounds(bounds);
 		imageBounds = imageBounds.transform('EPSG:4326',mapEPSG);
 		var tempImage = new OpenLayers.Layer.Image(
 			'tempImage',

@@ -252,7 +252,7 @@ cityArea.prototype={
 		layerEvent.activate();//使控件生效
         this.layerEvent = layerEvent;
 	},
-    getAreaLayer: function () {
+    getLayer: function () {
         return this.areaLayer;
     }
 };

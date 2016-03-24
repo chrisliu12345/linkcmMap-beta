@@ -21,11 +21,15 @@ buildMap.prototype={
 		map.setCenter(new OpenLayers.LonLat(mapStyle.mapLon,mapStyle.mapLat),mapStyle.mapZoom);
         this.mapWms = wms;
 	},
+    moveTo: function(lon,lat,zoom){
+        this.map.setCenter(new OpenLayers.LonLat(lon,lat),zoom);
+    },
 	getMap:function(){
 		return this.map;
 	},
     refreshUrl: function(url){
         this.mapWms.url = url;
+        this.mapWms.redraw();
     },
     addEventToLayers: function(layers,clickBack){
         var layerEvent = new OpenLayers.Control.SelectFeature(layers,{

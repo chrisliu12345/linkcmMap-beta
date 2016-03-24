@@ -10,11 +10,12 @@ var mapStyle={//显示区域基本设置
 	strokeColor:'#eee',
 	strokeWidth:'2',
 	wmsUrl:'http://vmap0.tiles.osgeo.org/wms/vmap0',
+    // wmsUrl:'../resources/img/4.jpg',
 	wmsName:'basic',
 	mapLon:'113',
 	mapLat:'23',
 	mapZoom:'6',
-	mapDrag:true//地图是否可以拖动
+	mapDrag:false//地图是否可以拖动
 };
 
 var selectStyle={//图层选中设置
