@@ -84,7 +84,7 @@ $(function(){
 	// distance.addDistanceTool();
 	function pointBack(obj){
 		console.info(obj);
-        area.loadTargetArea(obj.attributes.key);
+        /*area.loadTargetArea(obj.attributes.key);
         map.deactivateEvent();
         shape.hidePoint(['A']);
         pic.refreshImage('resources/img/11.jpg');
@@ -94,7 +94,7 @@ $(function(){
             shape.showPoint(['A']);
             // map.moveTo(121,18,6);
             pic.refreshImage('resources/img/10.jpg');
-        },2000);
+        },2000);*/
 	}
 });
 

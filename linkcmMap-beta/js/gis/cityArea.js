@@ -128,7 +128,7 @@ cityArea.prototype={
         var areaJson = [];
 		var jsonData = gd86Country.features;
 		for(var jKey in jsonData){
-            console.info(jsonData[jKey]);
+            // console.info(jsonData[jKey]);
             if(jsonData[jKey].parentName === parentName){
                 areaJson.push(jsonData[jKey]);
             }

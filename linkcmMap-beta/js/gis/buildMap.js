@@ -36,16 +36,27 @@ buildMap.prototype={
 		    hover: true,
 			highlightOnly: selectStyle.highlightOnly,
 	        onSelect: function(lev){
-                console.info('onSelect',lev);
+                // console.info('onSelect',lev);
+                var actionObj = {};
+                actionObj.type = 'onSelect';
+                actionObj.feature = lev;
+                clickBack(actionObj);
 	        },
 			onUnselect:function(lev){
-                console.info('onUnselect',lev);
+                // console.info('onUnselect',lev);
 				// document.getElementById('showLayer').style.display = 'none';
+                var actionObj = {};
+                actionObj.type = 'onUnselect';
+                actionObj.feature = lev;
+                clickBack(actionObj);
 			},
 			callbacks:{
 				click:function(lev){
 					if(clickBack){//则用户需要时返回回调函数
-						clickBack(lev);
+                        var actionObj = {};
+                        actionObj.type = 'click';
+                        actionObj.feature = lev;
+                        clickBack(actionObj);
 					}
 				}
 			}
