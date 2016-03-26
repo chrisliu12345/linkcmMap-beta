@@ -70,9 +70,14 @@ buildMap.prototype={
         this.layerEvent = layerEvent;
     },
     deactivateEvent: function () {
-        this.layerEvent.deactivate();//使控件失效
+        if(!!this.layerEvent){
+             this.layerEvent.deactivate();//使控件失效
+        }
+       
     },
     activateEvent: function () {
-        this.layerEvent.activate();//使控件失效
+        if(!!this.layerEvent){
+              this.layerEvent.activate();//使控件生效
+        }
     }
 };
