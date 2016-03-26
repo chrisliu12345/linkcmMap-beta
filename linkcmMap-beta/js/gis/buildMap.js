@@ -40,7 +40,9 @@ buildMap.prototype={
                 var actionObj = {};
                 actionObj.type = 'onSelect';
                 actionObj.feature = lev;
-                clickBack(actionObj);
+                if(clickBack){
+                    clickBack(actionObj);
+                }
 	        },
 			onUnselect:function(lev){
                 // console.info('onUnselect',lev);
@@ -48,7 +50,9 @@ buildMap.prototype={
                 var actionObj = {};
                 actionObj.type = 'onUnselect';
                 actionObj.feature = lev;
-                clickBack(actionObj);
+                if(clickBack){
+                    clickBack(actionObj);
+                }
 			},
 			callbacks:{
 				click:function(lev){
