@@ -1,0 +1,50 @@
+.olPopupContent {
+    overflow: visible !important;
+    padding: 0 !important;
+}
+.olPopup {
+    z-index: 1005 !important;
+}
+.olwidgetPopupContent {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 1.2em 1.2em 1.2em 1.2em;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+    overflow: auto;
+    padding: 10px 8px 8px;
+}
+.olwidgetPopupCloseBox {
+    background: url("img/close.gif") no-repeat;
+    cursor: pointer;
+    height: 0;
+    overflow: hidden;
+    padding-top: 16px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 16px;
+}
+.olwidgetPopupStemTL,.olwidgetPopupStemTR {
+    /* -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.8509, M12=-0.8509, M21=0.8509, M22=0.8509);
+    transform: rotate(45deg);
+    background: none repeat scroll 0 0 #FFFFFF;
+    z-index: 1; */
+    background:url('img/boxbg.png') no-repeat;
+    z-index:100;
+}
+
+.olwidgetPopupStemBL,.olwidgetPopupStemBR {
+    /* -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    filter:progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',M11=0.8509,M12=-0.8509,M21=0.8509,M22=0.8509);
+    transform: rotate(45deg);
+    background: none repeat scroll 0 0 #FFFFFF;
+    z-index: 1; */
+    background:url('img/boxbg2.png') no-repeat;
+    z-index:100;
+}
