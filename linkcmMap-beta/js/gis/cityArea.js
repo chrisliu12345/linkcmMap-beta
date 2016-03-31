@@ -26,6 +26,9 @@ cityArea.prototype={
                         default: {
                             fillColor: '${color}',
                             label:'${areaname}',
+							labelAlign: 'center',
+							labelXOffset: '${labelXOffset}',
+							labelYOffset: '${labelYOffset}',
                             fillOpacity:mapStyle.fillOpacity,
                             strokeColor: mapStyle.strokeColor,
                             strokeWidth:mapStyle.strokeWidth,
@@ -42,6 +45,9 @@ cityArea.prototype={
                     styleMap: new OpenLayers.StyleMap({
                         default: {fillColor: '${color}',
                             label:'${areaname}',
+							labelAlign: 'center',
+							labelXOffset: '${labelXOffset}',
+							labelYOffset: '${labelYOffset}',
                             fillOpacity:mapStyle.fillOpacity,
                             strokeColor: mapStyle.strokeColor,
                             strokeWidth:mapStyle.strokeWidth,
@@ -68,6 +74,8 @@ cityArea.prototype={
 			obj.key = tempJson.name;
             obj.parentName = tempJson.parentName;
 			obj.type='area';
+			obj.labelXOffset=0;
+			obj.labelYOffset=0;
 			if(mapStyle.fontShow){
 				obj.areaname =tempJson.name;
 			}else{
@@ -254,5 +262,25 @@ cityArea.prototype={
 	},
     getLayer: function () {
         return this.areaLayer;
-    }
+    },
+	/**
+	 * jjsonData = [{
+	 *  'fid':'gdzj',
+	 *  'x': '',
+	 *  'y': ''
+	 * }]
+	 * @param jsonData
+     */
+	updateLabelXY: function(jsonData){
+		var features = this.areaLayer.features;
+		for(var jKey in jsonData){
+			for(var key in features){
+				if(features[key].fid === jsonData[jKey].fid){
+					features[key].attributes.labelXOffset = jsonData[jKey].x;
+					features[key].attributes.labelYOffset = jsonData[jKey].y;
+				}
+			}
+		}
+		this.areaLayer.redraw();
+	}
 };

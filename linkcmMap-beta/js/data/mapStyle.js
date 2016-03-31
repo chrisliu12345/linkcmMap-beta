@@ -1,5 +1,5 @@
 var mapStyle={//显示区域基本设置
-	fontShow:false,
+	fontShow:true,
 	fontFamily:'宋体',
 	fontSize:'12',
 	fontColor:'black',

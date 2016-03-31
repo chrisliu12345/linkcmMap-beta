@@ -43,6 +43,13 @@ $(function(){
 		{"name":"湛江","color":"gray"}
 	];
 	area.load21City(styleJson);
+
+	var labelJson = [{'fid': 'gdzj','x':0,'y':0},
+		{'fid': 'gdmm','x':25,'y':0},
+		{'fid': 'gdyf','x':20,'y':10},
+		{'fid': 'gdjm','x':30,'y':0},
+		{'fid': 'gdhz','x':0,'y':30}];
+	area.updateLabelXY(labelJson);
 	//  var showJson = [
 	//  	{"name":"增城市","content":"<div style='border:1px solid #000;background:white;'><span>高温</span></div>"},
 	//  	{"name":"从化市","content":"<div style='border:1px solid #000;background:white;'><span>大风</span></div>"},
